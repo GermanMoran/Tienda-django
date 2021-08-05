@@ -1,0 +1,45 @@
+<!-- Incluimos la herencia de plantillas-->
+<!--Defino la herencia-->
+{% extends 'proyectowebapp/base.html' %}
+{% block content%}
+
+ {% for post in posts %}
+
+
+    <!-- Heading -->
+    <section class="page-section clearfix">
+        <div class="container">
+          <div class="intro">
+            <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{{post.imagen.url}}" alt="" width="100px" height="50%">
+            <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+              <h2 class="section-heading mb-4" >
+                <span class="section-heading-lower">{{post.titulo}}</span>
+              </h2>
+              <p class="mb-3">{{post.contenido}}</p>
+
+
+               <div style="text-align: left; font-size: 0.8em; color: white;">
+                  Autor: {{post.autor}}
+               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+ {% endfor %}
+  <!-- Aqui va la seccion de las Categorias-->
+  <section>
+    <div style="width: 70%; margin: auto; color: white; text-align: center;">
+        Categoria:
+
+        {% for post in posts %}
+
+          {% for categoria in post.categorias.all %}
+            <a href=" {% url 'categoria' categoria.id %}" class="linksposts">{{categoria.nombre}}</a> 
+          {% endfor %}
+        {% endfor %}
+    </div>
+  </section>
+{% endblock %}
+

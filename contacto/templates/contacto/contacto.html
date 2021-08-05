@@ -1,0 +1,19 @@
+<!-- Incluimos la herencia de plantillas-->
+<!--Defino la herencia-->
+{% extends 'proyectowebapp/base.html' %}
+{% block content%}
+
+<div class="cFormulario" style="margin: 10px auto; width: 50%; background-color: rgba(24, 64, 8, 0.8); padding: 1px 0px; border-radius: 5px;" >
+
+    <form action="" method="POST" style="text-align: center;">
+        <!--Incluimos un token ; esto lo que hace es agregar un campo oculto en el formulario en el cual
+        incluye un codigo largo a forma de clave, lo cual va a cambiando aletoriamente ( Forma de seguridad)-->
+        {% csrf_token %}
+        <table style="color: white; margin: 10px auto;">
+            {{miFormulario.as_table}}
+        </table>
+        <input type="submit" value="Enviar" style="width: 150px;">
+    </form>
+</div>
+<p style="color: white;">{{request.POST}}</p>
+{% endblock %}
